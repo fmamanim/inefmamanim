@@ -8,9 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
+    private EditText txtUsuario;
+    private EditText txtPassword;
+    private Button btnEnviar;
+    //private TextView txtResultado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,11 +24,16 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        txtUsuario=(EditText)findViewById(R.id.txtUsuario);
+        txtPassword=(EditText)findViewById(R.id.txtPassword);
+        btnEnviar=(Button)findViewById(R.id.btnEnviar);
+        //txtResultado=(TextView)findViewById(R.id.txtResultado);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "hola", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
