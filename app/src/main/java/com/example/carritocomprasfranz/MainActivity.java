@@ -1,8 +1,8 @@
 package com.example.carritocomprasfranz;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -16,25 +16,46 @@ public class MainActivity extends AppCompatActivity {
     private EditText txtUsuario;
     private EditText txtPassword;
     private Button btnEnviar;
-    //private TextView txtResultado;
+    private TextView txtResultado;
+
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        context=this;
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         txtUsuario=(EditText)findViewById(R.id.txtUsuario);
         txtPassword=(EditText)findViewById(R.id.txtPassword);
         btnEnviar=(Button)findViewById(R.id.btnEnviar);
-        //txtResultado=(TextView)findViewById(R.id.txtResultado);
+        txtResultado=(TextView)findViewById(R.id.txtResultado);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "hola", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+        //evento click en el boton
+        btnEnviar.setOnClickListener(new View.OnClickListener(){
+        public void onClick(View v){
+            String campo_usuario =txtUsuario.getText().toString();
+            String campo_pasword=txtPassword.getText().toString();
+
+        if (campo_usuario.compareTo("hola")== 0 && campo_pasword.compareTo("mundo")== 0)
+        {
+            Intent a=new Intent(context,PaginaPrincipal.class);
+            String[] datos=new String[2];
+            datos[0]=txtUsuario.getText().toString();
+            datos[1]=txtPassword.getText().toString();
+            a.putExtra("datos_usuario", datos);
+            startActivity(a);
+        }
+        else
+        txtResultado.setText("Contraseña incorrecta");
+
+
+
             }
         });
     }
